@@ -17,14 +17,14 @@ A more detailed review can be seen at [NotebookCheck](http://www.notebookcheck.n
 
 ### What's working?
 
-- [ ] microSD card slot
-- [ ] Internal flash storage
-- [ ] Graphics
-- [ ] microUSB port
+- [x] microSD card slot
+- [x] Internal flash storage
+- [x] Graphics
+- [x] microUSB port
 - [ ] Type-C USB port
-- [ ] Incorporated USB hub
-- [ ] Keyboard
-- [ ] Touchpad
+- [x] Incorporated USB hub
+- [x] Keyboard
+- [x] Touchpad
 - [ ] 802.11n wireless
 - [ ] Speakers
 - [ ] Headphone plug
@@ -32,10 +32,12 @@ A more detailed review can be seen at [NotebookCheck](http://www.notebookcheck.n
 - [ ] Backlight control
 - [ ] Power button
 - [ ] Volume buttons
-- [ ] Screen lid switch
+- [ ] Suspend
+- [x] Screen lid switch
 - [ ] Touchscreen
 - [ ] Accelerometer
-- [ ] HDMI output
+- [x] HDMI output
+- [ ] HDMI audio output
 - [ ] Bluetooth
 - [ ] Active stylus pen
 - [ ] Front camera
