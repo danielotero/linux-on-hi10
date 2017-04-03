@@ -1,0 +1,115 @@
+diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+index 1ae0bb9..a5cd5da 100644
+--- a/drivers/gpu/drm/i915/Kconfig
++++ b/drivers/gpu/drm/i915/Kconfig
+@@ -20,6 +20,7 @@ config DRM_I915
+ 	select INPUT if ACPI
+ 	select ACPI_VIDEO if ACPI
+ 	select ACPI_BUTTON if ACPI
++	select IOSF_MBI
+ 	help
+ 	  Choose this option if you have a system that has "Intel Graphics
+ 	  Media Accelerator" or "HD Graphics" integrated graphics,
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index ca699de..e4af9b7 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -749,6 +749,7 @@ struct intel_uncore {
+ 	const struct intel_forcewake_range *fw_domains_table;
+ 	unsigned int fw_domains_table_entries;
+ 
++	struct notifier_block pmic_bus_access_nb;
+ 	struct intel_uncore_funcs funcs;
+ 
+ 	unsigned fifo_count;
+diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+index 699a107..7d965e2 100644
+--- a/drivers/gpu/drm/i915/intel_uncore.c
++++ b/drivers/gpu/drm/i915/intel_uncore.c
+@@ -25,6 +25,7 @@
+ #include "intel_drv.h"
+ #include "i915_vgpu.h"
+ 
++#include <asm/iosf_mbi.h>
+ #include <linux/pm_runtime.h>
+ 
+ #define FORCEWAKE_ACK_TIMEOUT_MS 50
+@@ -436,12 +437,16 @@ static void __intel_uncore_early_sanitize(struct drm_i915_private *dev_priv,
+ 
+ void intel_uncore_suspend(struct drm_i915_private *dev_priv)
+ {
++	iosf_mbi_unregister_pmic_bus_access_notifier(
++		&dev_priv->uncore.pmic_bus_access_nb);
+ 	intel_uncore_forcewake_reset(dev_priv, false);
+ }
+ 
+ void intel_uncore_resume_early(struct drm_i915_private *dev_priv)
+ {
+ 	__intel_uncore_early_sanitize(dev_priv, true);
++	iosf_mbi_register_pmic_bus_access_notifier(
++		&dev_priv->uncore.pmic_bus_access_nb);
+ 	i915_check_and_clear_faults(dev_priv);
+ }
+ 
+@@ -1285,6 +1290,32 @@ static void intel_uncore_fw_domains_init(struct drm_i915_private *dev_priv)
+ 	dev_priv->uncore.fw_domains_table_entries = ARRAY_SIZE((d)); \
+ }
+ 
++static int i915_pmic_bus_access_notifier(struct notifier_block *nb,
++					 unsigned long action, void *data)
++{
++	struct drm_i915_private *dev_priv = container_of(nb,
++			struct drm_i915_private, uncore.pmic_bus_access_nb);
++
++	switch (action) {
++	case MBI_PMIC_BUS_ACCESS_BEGIN:
++		/*
++		 * forcewake all now to make sure that we don't need to do a
++		 * forcewake later which on systems where this notifier gets
++		 * called requires the punit to access to the shared pmic i2c
++		 * bus, which will be busy after this notification, leading to:
++		 * "render: timed out waiting for forcewake ack request."
++		 * errors.
++		 */
++		intel_uncore_forcewake_get(dev_priv, FORCEWAKE_ALL);
++		break;
++	case MBI_PMIC_BUS_ACCESS_END:
++		intel_uncore_forcewake_put(dev_priv, FORCEWAKE_ALL);
++		break;
++	}
++
++	return NOTIFY_OK;
++}
++
+ void intel_uncore_init(struct drm_i915_private *dev_priv)
+ {
+ 	i915_check_vgpu(dev_priv);
+@@ -1294,6 +1325,8 @@ void intel_uncore_init(struct drm_i915_private *dev_priv)
+ 	__intel_uncore_early_sanitize(dev_priv, false);
+ 
+ 	dev_priv->uncore.unclaimed_mmio_check = 1;
++	dev_priv->uncore.pmic_bus_access_nb.notifier_call =
++		i915_pmic_bus_access_notifier;
+ 
+ 	switch (INTEL_INFO(dev_priv)->gen) {
+ 	default:
+@@ -1344,6 +1377,9 @@ void intel_uncore_init(struct drm_i915_private *dev_priv)
+ 		break;
+ 	}
+ 
++	iosf_mbi_register_pmic_bus_access_notifier(
++		&dev_priv->uncore.pmic_bus_access_nb);
++
+ 	i915_check_and_clear_faults(dev_priv);
+ }
+ #undef ASSIGN_WRITE_MMIO_VFUNCS
+@@ -1351,6 +1387,9 @@ void intel_uncore_init(struct drm_i915_private *dev_priv)
+ 
+ void intel_uncore_fini(struct drm_i915_private *dev_priv)
+ {
++	iosf_mbi_unregister_pmic_bus_access_notifier(
++		&dev_priv->uncore.pmic_bus_access_nb);
++
+ 	/* Paranoia: make sure we have disabled everything before we exit. */
+ 	intel_uncore_sanitize(dev_priv);
+ 	intel_uncore_forcewake_reset(dev_priv, false);

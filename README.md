@@ -29,7 +29,7 @@ A more detailed review can be seen at [NotebookCheck](http://www.notebookcheck.n
 - [ ] Speakers
 - [ ] Headphone plug
 - [ ] Battery measurement
-- [ ] Backlight control
+- [x] Backlight control
 - [ ] Power button
 - [ ] Volume buttons
 - [ ] Suspend

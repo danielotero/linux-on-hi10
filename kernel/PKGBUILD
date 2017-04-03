@@ -5,7 +5,7 @@
 pkgbase=linux-hi10          # Build kernel with a different name
 _srcname=linux-4.11-rc4
 pkgver=4.11
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -18,14 +18,47 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/testing/${_srcname}.tar.xz
         # pacman hook for initramfs regeneration
         '90-linux.hook'
         # standard config files for mkinitcpio ramdisk
-        'linux.preset')
+        'linux.preset'
+        '0001.patch::https://patchwork.kernel.org/patch/9589751/raw/'
+        '0002.patch::https://patchwork.kernel.org/patch/9589753/raw/'
+        '0003.patch::https://patchwork.kernel.org/patch/9589755/raw/'
+        '0004.patch::https://patchwork.kernel.org/patch/9589757/raw/'
+        '0005.patch::https://patchwork.kernel.org/patch/9589759/raw/'
+        '0006.patch::https://patchwork.kernel.org/patch/9589761/raw/'
+        '0007.patch::https://patchwork.kernel.org/patch/9589763/raw/'
+        '0008.patch::https://patchwork.kernel.org/patch/9589767/raw/'
+        '0009.patch::https://patchwork.kernel.org/patch/9589769/raw/'
+        '0010.patch::https://patchwork.kernel.org/patch/9589771/raw/'
+        '0011.patch::https://patchwork.kernel.org/patch/9589773/raw/'
+        '0012.patch'                                                   # From https://patchwork.kernel.org/patch/9589775/
+        '0013.patch::https://patchwork.kernel.org/patch/9591861/raw/'
+        '0014.patch::https://patchwork.kernel.org/patch/9591865/raw/'
+        '0015.patch'                                                   # From https://patchwork.kernel.org/patch/9592875/
+        '0016.patch::https://patchwork.kernel.org/patch/9592877/raw/'
+        )
 
 sha256sums=('f0b46aff9b74778edd0cac2f272598255f39dcbf6e8c96caed509182e72f774f'
             'SKIP'
             '386051f19482672c871e7865fc62f5e2c8010d857729134ba13044734962e42c'
             '6c44ee5ffc32563fb63f921e7eaaa1483b925f01611c4b41e2a53b8832ef50a3'
             '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
-            'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65')
+            'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
+            '30a3bf5fffff71e954167e876d72f54796a58e9405c3f4f5d16f1b988b32a8fc'
+            '9ef940b704e3d32419173eceb769b78592bbcec823a82102b8930d8e02801217'
+            'e1dde2bf7c2876b052027c7273d971be838c2b7853f569d6df41daf10a7f62c6'
+            '537bab1104294897dcb0091c0ee26025b95069ea375a4ef87114df3ef0b36a46'
+            'd9c6b8a83bf1c45911415541c577577d6fea9966ceceb422b3b30a19a5708637'
+            '283f8e863c01787fc4ab737dc14c6d06b5e1671250a6e17d4bafeef66ed4470e'
+            'bfe52633a1b5b57f36f103400f8701095c323a5dcac1706a0cfcc94a41aae69d'
+            '043ed3cb966c7718906fc83ca8149311d652000b3badfc5a08f357025172a2ca'
+            '34ab58c53e2167fa9fbc441cedb34e8cea03e45840c4f776b7d4a3bcdc14616e'
+            'e19aa993547084966fe30ce183ee755a12b0eea7b01144e65d4e6f4e0e97e6c2'
+            '3c12dfaee09513ca475f8adc0b1f9ec6de9d39a80520b24089ac0459f7829d54'
+            'e5d35691a85efaeea04ea6c8a2ab1cb47c89e5355f715f0cbed778d492ebe2dc'
+            '64c90351003e893241198692054fa4c4077605b35ec0694821d05be05da6342e'
+            '415a1c9d53520ba73205bbfbd432fe85596fe8807a9f0e55f3886515cced71da'
+            '242d234ddfd994d36aaa87933a337905d9fc9e4f60ebb7296493b48c58c935af'
+            '7740d5ab5c662c319a9361128f5424e45106227ac3141ee66dbfc320e4829e41')
 validpgpkeys=(
               'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
               '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
@@ -41,6 +74,11 @@ prepare() {
 
   # add latest fixes from stable queue, if needed
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
+
+  # add custom patches
+  for patch in "${srcdir}"/*.patch; do
+    patch -p1 -i "${patch}"
+  done
 
   cat "${srcdir}/config.${CARCH}" > ./.config
 
