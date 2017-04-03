@@ -5,7 +5,7 @@
 pkgbase=linux-hi10          # Build kernel with a different name
 _srcname=linux-4.11-rc4
 pkgver=4.11
-pkgrel=2
+pkgrel=3
 arch=('i686' 'x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -40,7 +40,7 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/testing/${_srcname}.tar.xz
 sha256sums=('f0b46aff9b74778edd0cac2f272598255f39dcbf6e8c96caed509182e72f774f'
             'SKIP'
             '386051f19482672c871e7865fc62f5e2c8010d857729134ba13044734962e42c'
-            '6c44ee5ffc32563fb63f921e7eaaa1483b925f01611c4b41e2a53b8832ef50a3'
+            'c018b453910b01d6f68c2440c6560c0efdbe602d5f1f2eb033b089c52a8d28f8'
             '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
             '30a3bf5fffff71e954167e876d72f54796a58e9405c3f4f5d16f1b988b32a8fc'

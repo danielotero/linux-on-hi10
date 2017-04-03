@@ -28,7 +28,7 @@ A more detailed review can be seen at [NotebookCheck](http://www.notebookcheck.n
 - [ ] 802.11n wireless
 - [ ] Speakers
 - [ ] Headphone plug
-- [ ] Battery measurement
+- [x] Battery measurement
 - [x] Backlight control
 - [ ] Power button
 - [ ] Volume buttons
