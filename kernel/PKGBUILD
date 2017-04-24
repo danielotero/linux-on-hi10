@@ -3,9 +3,9 @@
 
 #pkgbase=linux              # Build stock -ARCH kernel
 pkgbase=linux-hi10          # Build kernel with a different name
-_srcname=linux-4.11-rc4
+_srcname=linux-4.11-rc8
 pkgver=4.11
-pkgrel=3
+pkgrel=4
 arch=('i686' 'x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -37,10 +37,10 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/testing/${_srcname}.tar.xz
         '0016.patch::https://patchwork.kernel.org/patch/9592877/raw/'
         )
 
-sha256sums=('f0b46aff9b74778edd0cac2f272598255f39dcbf6e8c96caed509182e72f774f'
+sha256sums=('acda201845186cb347b036f23f9bea4990f03f4f604e3bf30837284d99567348'
             'SKIP'
             '386051f19482672c871e7865fc62f5e2c8010d857729134ba13044734962e42c'
-            'c018b453910b01d6f68c2440c6560c0efdbe602d5f1f2eb033b089c52a8d28f8'
+            'e7043a717ed0440a50541b92ecd6ac8425e7bd4c023ed2d6134aae338c1e7889'
             '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
             '30a3bf5fffff71e954167e876d72f54796a58e9405c3f4f5d16f1b988b32a8fc'
