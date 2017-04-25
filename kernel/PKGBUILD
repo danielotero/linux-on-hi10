@@ -5,7 +5,7 @@
 pkgbase=linux-hi10          # Build kernel with a different name
 _srcname=linux-4.11-rc8
 pkgver=4.11
-pkgrel=4
+pkgrel=5
 arch=('i686' 'x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -31,10 +31,12 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/testing/${_srcname}.tar.xz
         '0010.patch::https://patchwork.kernel.org/patch/9589771/raw/'
         '0011.patch::https://patchwork.kernel.org/patch/9589773/raw/'
         '0012.patch'                                                   # From https://patchwork.kernel.org/patch/9589775/
-        '0013.patch::https://patchwork.kernel.org/patch/9591861/raw/'
-        '0014.patch::https://patchwork.kernel.org/patch/9591865/raw/'
         '0015.patch'                                                   # From https://patchwork.kernel.org/patch/9592875/
         '0016.patch::https://patchwork.kernel.org/patch/9592877/raw/'
+        '0017.patch::https://patchwork.kernel.org/patch/9692413/raw/'
+        '0018.patch::https://patchwork.kernel.org/patch/9692415/raw/'
+        '0019.patch::https://patchwork.kernel.org/patch/9694871/raw/'
+        '0020.patch::https://patchwork.kernel.org/patch/9694877/raw/'
         )
 
 sha256sums=('acda201845186cb347b036f23f9bea4990f03f4f604e3bf30837284d99567348'
@@ -55,10 +57,13 @@ sha256sums=('acda201845186cb347b036f23f9bea4990f03f4f604e3bf30837284d99567348'
             'e19aa993547084966fe30ce183ee755a12b0eea7b01144e65d4e6f4e0e97e6c2'
             '3c12dfaee09513ca475f8adc0b1f9ec6de9d39a80520b24089ac0459f7829d54'
             'e5d35691a85efaeea04ea6c8a2ab1cb47c89e5355f715f0cbed778d492ebe2dc'
-            '64c90351003e893241198692054fa4c4077605b35ec0694821d05be05da6342e'
-            '415a1c9d53520ba73205bbfbd432fe85596fe8807a9f0e55f3886515cced71da'
             '242d234ddfd994d36aaa87933a337905d9fc9e4f60ebb7296493b48c58c935af'
-            '7740d5ab5c662c319a9361128f5424e45106227ac3141ee66dbfc320e4829e41')
+            '7740d5ab5c662c319a9361128f5424e45106227ac3141ee66dbfc320e4829e41'
+            '9cd05c0948a7c4e151a5de49bb5a6a7fa387dd9f4431910cfd38253607abae5e'
+            '3adede1f42db25fe8301f1c65b4d93168d5543f9090bc86fc9b48fbbff7c85c3'
+            'e5c8e55059ab75c492772636009721d7119b945e60763d012a51fbd42fc6031c'
+            'a0387b0092e493bb16a49066d29d5df5ae4728fe230ebe3b1dd4d45795bc1ac5'
+            )
 validpgpkeys=(
               'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
               '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
