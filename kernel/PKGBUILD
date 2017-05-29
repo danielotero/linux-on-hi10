@@ -3,66 +3,30 @@
 
 #pkgbase=linux              # Build stock -ARCH kernel
 pkgbase=linux-hi10          # Build kernel with a different name
-_srcname=linux-4.11-rc8
-pkgver=4.11
-pkgrel=5
+_srcname=linux-4.12-rc2
+pkgver=4.12
+pkgrel=3
 arch=('i686' 'x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'libelf')
 options=('!strip')
-source=("https://www.kernel.org/pub/linux/kernel/v4.x/testing/${_srcname}.tar.xz"
-        "https://www.kernel.org/pub/linux/kernel/v4.x/testing/${_srcname}.tar.sign"
+source=("https://git.kernel.org/torvalds/t/${_srcname}.tar.xz"
         # the main kernel config files
         'config.i686' 'config.x86_64'
         # pacman hook for initramfs regeneration
         '90-linux.hook'
         # standard config files for mkinitcpio ramdisk
         'linux.preset'
-        '0001.patch::https://patchwork.kernel.org/patch/9589751/raw/'
-        '0002.patch::https://patchwork.kernel.org/patch/9589753/raw/'
-        '0003.patch::https://patchwork.kernel.org/patch/9589755/raw/'
-        '0004.patch::https://patchwork.kernel.org/patch/9589757/raw/'
-        '0005.patch::https://patchwork.kernel.org/patch/9589759/raw/'
-        '0006.patch::https://patchwork.kernel.org/patch/9589761/raw/'
-        '0007.patch::https://patchwork.kernel.org/patch/9589763/raw/'
-        '0008.patch::https://patchwork.kernel.org/patch/9589767/raw/'
-        '0009.patch::https://patchwork.kernel.org/patch/9589769/raw/'
-        '0010.patch::https://patchwork.kernel.org/patch/9589771/raw/'
-        '0011.patch::https://patchwork.kernel.org/patch/9589773/raw/'
-        '0012.patch'                                                   # From https://patchwork.kernel.org/patch/9589775/
-        '0015.patch'                                                   # From https://patchwork.kernel.org/patch/9592875/
-        '0016.patch::https://patchwork.kernel.org/patch/9592877/raw/'
-        '0017.patch::https://patchwork.kernel.org/patch/9692413/raw/'
-        '0018.patch::https://patchwork.kernel.org/patch/9692415/raw/'
-        '0019.patch::https://patchwork.kernel.org/patch/9694871/raw/'
-        '0020.patch::https://patchwork.kernel.org/patch/9694877/raw/'
+        '0001.patch'
         )
 
-sha256sums=('acda201845186cb347b036f23f9bea4990f03f4f604e3bf30837284d99567348'
-            'SKIP'
+sha256sums=('3cc91cd32f519ce16c0d09138102ca7da1128c395f22f3565f74e5985e44e6a2'
             '386051f19482672c871e7865fc62f5e2c8010d857729134ba13044734962e42c'
-            'e7043a717ed0440a50541b92ecd6ac8425e7bd4c023ed2d6134aae338c1e7889'
+            'a60a09662470c41da6d2a8492eb98214a56c4fd80ca8dabeed0ef840dfa641b1'
             '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
-            '30a3bf5fffff71e954167e876d72f54796a58e9405c3f4f5d16f1b988b32a8fc'
-            '9ef940b704e3d32419173eceb769b78592bbcec823a82102b8930d8e02801217'
-            'e1dde2bf7c2876b052027c7273d971be838c2b7853f569d6df41daf10a7f62c6'
-            '537bab1104294897dcb0091c0ee26025b95069ea375a4ef87114df3ef0b36a46'
-            'd9c6b8a83bf1c45911415541c577577d6fea9966ceceb422b3b30a19a5708637'
-            '283f8e863c01787fc4ab737dc14c6d06b5e1671250a6e17d4bafeef66ed4470e'
-            'bfe52633a1b5b57f36f103400f8701095c323a5dcac1706a0cfcc94a41aae69d'
-            '043ed3cb966c7718906fc83ca8149311d652000b3badfc5a08f357025172a2ca'
-            '34ab58c53e2167fa9fbc441cedb34e8cea03e45840c4f776b7d4a3bcdc14616e'
-            'e19aa993547084966fe30ce183ee755a12b0eea7b01144e65d4e6f4e0e97e6c2'
-            '3c12dfaee09513ca475f8adc0b1f9ec6de9d39a80520b24089ac0459f7829d54'
-            'e5d35691a85efaeea04ea6c8a2ab1cb47c89e5355f715f0cbed778d492ebe2dc'
-            '242d234ddfd994d36aaa87933a337905d9fc9e4f60ebb7296493b48c58c935af'
-            '7740d5ab5c662c319a9361128f5424e45106227ac3141ee66dbfc320e4829e41'
-            '9cd05c0948a7c4e151a5de49bb5a6a7fa387dd9f4431910cfd38253607abae5e'
-            '3adede1f42db25fe8301f1c65b4d93168d5543f9090bc86fc9b48fbbff7c85c3'
-            'e5c8e55059ab75c492772636009721d7119b945e60763d012a51fbd42fc6031c'
-            'a0387b0092e493bb16a49066d29d5df5ae4728fe230ebe3b1dd4d45795bc1ac5'
+            '23a20fd8f2efb3cc65a375caf738df74029011f167f59a02f3926d1763df595a'
             )
 validpgpkeys=(
               'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
@@ -82,6 +46,8 @@ prepare() {
 
   # add custom patches
   for patch in "${srcdir}"/*.patch; do
+    [ -f "$patch" ] || continue
+    echo "Apply patch ${patch}..."
     patch -p1 -i "${patch}"
   done
 
