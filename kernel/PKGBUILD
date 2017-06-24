@@ -3,9 +3,9 @@
 
 #pkgbase=linux              # Build stock -ARCH kernel
 pkgbase=linux-hi10          # Build kernel with a different name
-_srcname=linux-4.12-rc2
+_srcname=linux-4.12-rc6
 pkgver=4.12
-pkgrel=3
+pkgrel=4
 arch=('i686' 'x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -18,15 +18,13 @@ source=("https://git.kernel.org/torvalds/t/${_srcname}.tar.xz"
         '90-linux.hook'
         # standard config files for mkinitcpio ramdisk
         'linux.preset'
-        '0001.patch'
         )
 
-sha256sums=('3cc91cd32f519ce16c0d09138102ca7da1128c395f22f3565f74e5985e44e6a2'
+sha256sums=('ec614d30984df3cd492abb3435eee2edcea4587aa92487148357cf5c67311a7b'
             '386051f19482672c871e7865fc62f5e2c8010d857729134ba13044734962e42c'
             'a60a09662470c41da6d2a8492eb98214a56c4fd80ca8dabeed0ef840dfa641b1'
             '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
-            '23a20fd8f2efb3cc65a375caf738df74029011f167f59a02f3926d1763df595a'
             )
 validpgpkeys=(
               'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
