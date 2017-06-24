@@ -25,7 +25,7 @@ A more detailed review can be seen at [NotebookCheck](http://www.notebookcheck.n
 - [x] Incorporated USB hub
 - [x] Keyboard
 - [x] Touchpad
-- [ ] 802.11n wireless
+- [x] 802.11n wireless
 - [ ] Speakers
 - [ ] Headphone plug
 - [x] Battery measurement
