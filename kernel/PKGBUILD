@@ -3,15 +3,17 @@
 
 #pkgbase=linux              # Build stock -ARCH kernel
 pkgbase=linux-hi10          # Build kernel with a different name
-_srcname=linux-4.12-rc6
+_srcname=linux-4.12
 pkgver=4.12
-pkgrel=4
+pkgrel=5
 arch=('i686' 'x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'libelf')
 options=('!strip')
-source=("https://git.kernel.org/torvalds/t/${_srcname}.tar.xz"
+source=(
+        "https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
+        "https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.sign"
         # the main kernel config files
         'config.i686' 'config.x86_64'
         # pacman hook for initramfs regeneration
@@ -20,7 +22,9 @@ source=("https://git.kernel.org/torvalds/t/${_srcname}.tar.xz"
         'linux.preset'
         )
 
-sha256sums=('ec614d30984df3cd492abb3435eee2edcea4587aa92487148357cf5c67311a7b'
+sha256sums=(
+            'a45c3becd4d08ce411c14628a949d08e2433d8cdeca92036c7013980e93858ab'
+            'SKIP'
             '386051f19482672c871e7865fc62f5e2c8010d857729134ba13044734962e42c'
             'a60a09662470c41da6d2a8492eb98214a56c4fd80ca8dabeed0ef840dfa641b1'
             '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
