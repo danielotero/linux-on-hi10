@@ -1,0 +1,7 @@
+*.tar.xz
+
+kernel/*.tar
+kernel/src
+kernel/pkg
+kernel/linux.install.pkg
+

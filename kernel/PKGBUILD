@@ -3,7 +3,7 @@
 
 #pkgbase=linux              # Build stock -ARCH kernel
 pkgbase=linux-hi10          # Build kernel with a different name
-_srcname=linux-4.12-rc6
+_srcname=linux-4.12
 pkgver=4.12
 pkgrel=4
 arch=('i686' 'x86_64')
@@ -20,7 +20,7 @@ source=("https://git.kernel.org/torvalds/t/${_srcname}.tar.xz"
         'linux.preset'
         )
 
-sha256sums=('ec614d30984df3cd492abb3435eee2edcea4587aa92487148357cf5c67311a7b'
+sha256sums=('f51ed5e24bf3b10de6d6a3073bb46269555b151f12a4e791a6027a05e0af6b42'
             '386051f19482672c871e7865fc62f5e2c8010d857729134ba13044734962e42c'
             'a60a09662470c41da6d2a8492eb98214a56c4fd80ca8dabeed0ef840dfa641b1'
             '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
