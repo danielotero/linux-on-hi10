@@ -13,35 +13,37 @@ A more detailed review can be seen at [NotebookCheck](http://www.notebookcheck.n
 | RAM          | DDR3 4096 MB @ 1066 MHz                  |
 | Screen       | 10.1-inch IPS display @ 1920x1200 pixels |
 | Connectivity | 802.11n and Bluetooth® 4.0               |
-| Ports        | 1 USB Type-C™, 1 µUSB, 1 µHDMI®          |
+| Ports        | 1 USB Type-C™, 1 microUSB, 1 microHDMI®  |
 
 ### What's working?
 
-- [x] microSD card slot
-- [x] Internal flash storage
-- [x] Graphics
-- [x] microUSB port
-- [ ] Type-C USB port
-- [x] Incorporated USB hub
-- [x] Keyboard
-- [x] Touchpad
-- [x] 802.11n wireless
-- [ ] Speakers
-- [ ] Headphone plug
-- [x] Battery measurement
-- [x] Backlight control
-- [ ] Power button
-- [ ] Volume buttons
-- [ ] Suspend
-- [x] Screen lid switch
-- [ ] Touchscreen
-- [ ] Accelerometer
-- [x] HDMI output
-- [ ] HDMI audio output
-- [ ] Bluetooth
-- [ ] Active stylus pen
-- [ ] Front camera
-- [ ] Back camera
-- [ ] Light Sensor
+| Device                 | Status                    |
+|------------------------|---------------------------|
+| microSD card slot      | No                        |
+| Internal flash storage | Yes                       |
+| Graphics               | Yes                       |
+| microUSB port          | Yes                       |
+| Type-C USB port        | Only charging             |
+| Incorporated USB hub   | Yes                       |
+| Keyboard               | Yes                       |
+| Touchpad               | Yes                       |
+| 802.11n wireless       | Yes (4.12 staging driver) |
+| Speakers               | No                        |
+| Headphone plug         | No                        |
+| Battery measurement    | Yes                       |
+| Backlight control      | Yes, with [this](https://bugs.freedesktop.org/show_bug.cgi?id=85977#c38) tweak |
+| Power button           | Yes                       |
+| Volume buttons         | Yes                       |
+| Suspend                | Yes? Needs more testing   |
+| Screen lid switch      | Yes                       |
+| Touchscreen            | With [gslx680-acpi](https://github.com/onitake/gslx680-acpi) |
+| Accelerometer          | No                        |
+| HDMI output            | Yes? Needs more testing   |
+| HDMI audio output      | Not tested                |
+| Bluetooth              | Not tested                |
+| Active stylus pen      | Not tested                |
+| Front camera           | No                        |
+| Back camera            | No                        |
+| Light Sensor           | Not tested                |
 
 **Note:** This list is sorted by my own priorities.
