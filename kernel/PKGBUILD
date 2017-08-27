@@ -3,9 +3,9 @@
 
 #pkgbase=linux              # Build stock -ARCH kernel
 pkgbase=linux-hi10          # Build kernel with a different name
-_srcname=linux-4.13-rc2
+_srcname=linux-4.13-rc6
 pkgver=4.13
-pkgrel=1
+pkgrel=3
 arch=('i686' 'x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
@@ -24,10 +24,10 @@ source=(
         )
 
 sha256sums=(
-            '2e56aafeb1b8058fef6f7da701fd82e6dea87c387c7d466caf14cf8ff6f820da'
+            'c29dcb48a0e77468c78dffe9b1edaa1c8e66f87083d4791a41b8ca06e35b4d1a'
             #'SKIP'
             '386051f19482672c871e7865fc62f5e2c8010d857729134ba13044734962e42c'
-            '54de311088c36e648b1e6e5c4cd79a3abc75046272bc8009deb48025aa29806b'
+            'b2a224f68514a9d9180eebc6356edd819b25d539a081900f9e166d1009183f70'
             '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65'
             )
