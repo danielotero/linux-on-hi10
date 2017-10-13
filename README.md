@@ -23,20 +23,20 @@ A more detailed review can be seen at [NotebookCheck](http://www.notebookcheck.n
 | Internal flash storage | Yes                       |
 | Graphics               | Yes                       |
 | microUSB port          | Yes                       |
-| Type-C USB port        | Only charging             |
+| Type-C USB port        | Not tested (charging works) |
 | Incorporated USB hub   | Yes                       |
 | Keyboard               | Yes                       |
 | Touchpad               | Yes                       |
-| 802.11n wireless       | Yes (4.12 staging driver) |
+| 802.11n wireless       | Yes (4.12+ staging driver) |
 | Speakers               | No                        |
-| Headphone plug         | No                        |
+| Headphone plug         | Yes, with [plbossart/UCM](https://github.com/plbossart/UCM/tree/master/bytcr-rt5651) |
 | Battery measurement    | Yes                       |
 | Backlight control      | Yes, with [this](https://bugs.freedesktop.org/show_bug.cgi?id=85977#c38) tweak |
 | Power button           | Yes                       |
 | Volume buttons         | Yes                       |
 | Suspend                | Yes? Needs more testing   |
 | Screen lid switch      | Yes                       |
-| Touchscreen            | With [gslx680-acpi](https://github.com/onitake/gslx680-acpi) |
+| Touchscreen            | With [onitake/gslx680-acpi](https://github.com/onitake/gslx680-acpi) |
 | Accelerometer          | No                        |
 | HDMI output            | Yes? Needs more testing   |
 | HDMI audio output      | Not tested                |
