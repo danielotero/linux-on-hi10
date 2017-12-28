@@ -3,17 +3,17 @@
 
 #pkgbase=linux              # Build stock -ARCH kernel
 pkgbase=linux-hi10          # Build kernel with a different name
-_srcname=linux-4.14
-pkgver=4.14
-pkgrel=4
+_srcname=linux-4.15-rc5
+pkgver=4.15
+pkgrel=2
 arch=('i686' 'x86_64')
 url="https://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'kmod' 'inetutils' 'bc' 'libelf')
 options=('!strip')
-source=(#"https://git.kernel.org/torvalds/t/${_srcname}.tar.gz"
-        "https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
-        "https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.sign"
+source=("https://git.kernel.org/torvalds/t/${_srcname}.tar.gz"
+        #"https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
+        #"https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.sign"
         # the main kernel config files
         'config.i686' 'config.x86_64'
         # pacman hook for initramfs regeneration
@@ -21,10 +21,10 @@ source=(#"https://git.kernel.org/torvalds/t/${_srcname}.tar.gz"
         # standard config files for mkinitcpio ramdisk
         'linux.preset')
 
-sha256sums=('f81d59477e90a130857ce18dc02f4fbe5725854911db1e7ba770c7cd350f96a7'
-            'SKIP'
+sha256sums=('d9d091ca706fc724047364bf247f4ced11b8cc2c46c3d39aa3618a71f48b835b'
+            #'SKIP'
             '9b1d9fcb55782e6149aca4dc2d3b250dd4cedf1bf4bd8c6f0968acab0e2e0ee4'
-            '04325e59d33507a9b8809015993787a948c52ba4357722dd0bef91aaca535000'
+            '9f9aed408a5a6bc7ba6e1abd3aa0c2c7628e28dabbe8d62daeaf3363669fe136'
             '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
             'ad6344badc91ad0630caacde83f7f9b97276f80d26a20619a87952be65492c65')
 validpgpkeys=(
