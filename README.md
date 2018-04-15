@@ -3,7 +3,7 @@ This is my attempt to gather all the information in one place on how to support 
 
 The configuration will be around my distribution ([Arch Linux](https://www.archlinux.org/)), but I hope that all the instructions here can be easily adapted to other distributions. Be aware that Arch Linux it's a [rolling realese](https://en.wikipedia.org/wiki/Rolling_release) distribution, so all software used will be pretty recent.
 
-### Basic specifications
+### Basic hardware specifications
 A more detailed review can be seen at [NotebookCheck](http://www.notebookcheck.net/Chuwi-Hi10-Pro-Tablet-Review.186738.0.html).
 
 | Part         | Component                                |
@@ -15,11 +15,12 @@ A more detailed review can be seen at [NotebookCheck](http://www.notebookcheck.n
 | Connectivity | 802.11n and Bluetooth® 4.0               |
 | Ports        | 1 USB Type-C™, 1 microUSB, 1 microHDMI®  |
 
-### What's working?
+### Current status
+This table currently refers to the default Arch Linux kernel package version 4.16.2-1.
 
 | Device                 | Status                    |
 |------------------------|---------------------------|
-| microSD card slot      | No                        |
+| microSD card slot      | Yes                       |
 | Internal flash storage | Yes                       |
 | Graphics               | Yes                       |
 | microUSB port          | Yes                       |
@@ -27,23 +28,30 @@ A more detailed review can be seen at [NotebookCheck](http://www.notebookcheck.n
 | Incorporated USB hub   | Yes                       |
 | Keyboard               | Yes                       |
 | Touchpad               | Yes                       |
-| 802.11n wireless       | Yes (4.12+ staging driver) |
+| 802.11n wireless       | Yes                       |
 | Speakers               | No                        |
 | Headphone plug         | Yes, with [plbossart/UCM](https://github.com/plbossart/UCM/tree/master/bytcr-rt5651) |
 | Battery measurement    | Yes                       |
-| Backlight control      | Yes, with [this](https://bugs.freedesktop.org/show_bug.cgi?id=85977#c38) tweak |
+| Backlight control      | Yes                       |
 | Power button           | Yes                       |
 | Volume buttons         | Yes                       |
-| Suspend                | Yes? Needs more testing   |
+| Suspend                | Yes                       |
 | Screen lid switch      | Yes                       |
-| Touchscreen            | With [onitake/gslx680-acpi](https://github.com/onitake/gslx680-acpi) |
+| Touchscreen            | See [below](#touchscreen-configuration) |
 | Accelerometer          | No                        |
-| HDMI output            | Yes? Needs more testing   |
+| HDMI output            | Needs more testing        |
 | HDMI audio output      | Not tested                |
 | Bluetooth              | Not tested                |
-| Active stylus pen      | Not tested                |
+| Active stylus pen      | Yes                       |
 | Front camera           | No                        |
 | Back camera            | No                        |
 | Light Sensor           | Not tested                |
 
 **Note:** This list is sorted by my own priorities.
+
+### Touchscreen configuration
+From linux 4.15 on, the `silead` in-tree kernel module should work, as long as you provide a valid firmware.
+
+Try downloading [this file](https://github.com/onitake/gsl-firmware/raw/master/firmware/chuwi/hi10_pro-z8350/firmware.fw) to `/usr/lib/firmware/silead/mssl1680.fw`
+
+Probably, the firmware needs heavy calibrations. Try using the [touchscreen/rotation](https://github.com/danielotero/linux-on-hi10/blob/master/touchscreen/rotation) script.
