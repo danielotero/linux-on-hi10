@@ -12,11 +12,15 @@ A more detailed review can be seen at [NotebookCheck](http://www.notebookcheck.n
 | Graphics     | Intel® HD Graphics 400                   |
 | RAM          | DDR3 4096 MB @ 1066 MHz                  |
 | Screen       | 10.1-inch IPS display @ 1920x1200 pixels |
-| Connectivity | 802.11n and Bluetooth® 4.0               |
+| Touchscreen  | Silead GSL1680                           |
+| Connectivity | Realtek 8723BS (802.11n & Bluetooth® 4)  |
+| Accelerometer| Bosch BMC150                             |
+| Light sensor | Capella CM3218                           |
+| Camera (?)   | OmniVision OV2680                        |
 | Ports        | 1 USB Type-C™, 1 microUSB, 1 microHDMI®  |
 
 ### Current status
-This table currently refers to the default Arch Linux kernel package version 4.16.2-1.
+This table currently refers to the default Arch Linux kernel package version 5.0.7-arch1
 
 | Device                 | Status                    |
 |------------------------|---------------------------|
@@ -24,34 +28,32 @@ This table currently refers to the default Arch Linux kernel package version 4.1
 | Internal flash storage | Yes                       |
 | Graphics               | Yes                       |
 | microUSB port          | Yes                       |
-| Type-C USB port        | Not tested (charging works) |
+| Type-C USB port        | Yes                       |
 | Incorporated USB hub   | Yes                       |
 | Keyboard               | Yes                       |
 | Touchpad               | Yes                       |
-| 802.11n wireless       | Yes                       |
-| Speakers               | No                        |
-| Headphone plug         | Yes, with [plbossart/UCM](https://github.com/plbossart/UCM/tree/master/bytcr-rt5651) |
+| 802.11n wireless       | Very badly                |
+| Speakers               | Yes                       |
+| Headphone plug         | Yes                       |
 | Battery measurement    | Yes                       |
 | Backlight control      | Yes                       |
 | Power button           | Yes                       |
 | Volume buttons         | Yes                       |
 | Suspend                | Yes                       |
 | Screen lid switch      | Yes                       |
-| Touchscreen            | See [below](#touchscreen-configuration) |
-| Accelerometer          | No                        |
-| HDMI output            | Needs more testing        |
-| HDMI audio output      | Not tested                |
+| Touchscreen            | Yes (see [touchscreen](touchscreen) folder) |
+| Accelerometer          | Yes                       |
+| HDMI output            | Yes                       |
+| HDMI audio output      | No                        |
 | Bluetooth              | Not tested                |
 | Active stylus pen      | Yes                       |
 | Front camera           | No                        |
 | Back camera            | No                        |
-| Light Sensor           | Not tested                |
+| Light Sensor           | No                        |
 
 **Note:** This list is sorted by my own priorities.
 
-### Touchscreen configuration
-From linux 4.15 on, the `silead` in-tree kernel module should work, as long as you provide a valid firmware.
-
-Try downloading [this file](https://github.com/onitake/gsl-firmware/raw/master/firmware/chuwi/hi10_pro-z8350/firmware.fw) to `/usr/lib/firmware/silead/mssl1680.fw`
-
-Probably, the firmware needs heavy calibrations. Try using the [touchscreen/rotation](https://github.com/danielotero/linux-on-hi10/blob/master/touchscreen/rotation) script.
+### To do
+ - Check [this patch](https://lore.kernel.org/patchwork/patch/397958/) for the light sensor.
+ - Search for ways to improve WiFi stability (BIOS?).
+ - Investigate the touch screen home button.
