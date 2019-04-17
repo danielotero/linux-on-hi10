@@ -57,3 +57,6 @@ This table currently refers to the default Arch Linux kernel package version 5.0
  - Check [this patch](https://lore.kernel.org/patchwork/patch/397958/) for the light sensor.
  - Search for ways to improve WiFi stability (BIOS?).
  - Investigate the touch screen home button.
+
+### Notes
+ Take also a look to the [willyneutron](https://github.com/willyneutron/lubuntu_in_chuwi_Hi10Pro) repo, which is more detailed!
