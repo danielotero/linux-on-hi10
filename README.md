@@ -24,7 +24,6 @@ This table currently refers to the default Arch Linux kernel package version 5.0
 
 | Device                 | Status                    |
 |------------------------|---------------------------|
-| microSD card slot      | Yes                       |
 | Internal flash storage | Yes                       |
 | Graphics               | Yes                       |
 | microUSB port          | Yes                       |
@@ -42,6 +41,7 @@ This table currently refers to the default Arch Linux kernel package version 5.0
 | Suspend                | Yes                       |
 | Screen lid switch      | Yes                       |
 | Touchscreen            | Yes (see [touchscreen](touchscreen) folder) |
+| microSD card slot      | Sometimes, Unreliable     |
 | Accelerometer          | Yes                       |
 | HDMI output            | Yes                       |
 | HDMI audio output      | No                        |
