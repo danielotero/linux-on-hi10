@@ -5,7 +5,22 @@ Different firmwares can be downloaded from [onitake/gsl-firmware](https://github
 The closest one to my tablet is
 [this one](https://github.com/onitake/gsl-firmware/raw/master/firmware/chuwi/hi10-pro-z8350-Hi10_HQ64G42170704809/firmware.fw).
 
-The firmware needs to be copied to `/usr/lib/firmware/silead/mssl1680.fw`
+The firmware needs to be copied to `/usr/lib/firmware/silead/` with a custom name depending on the device (or `mssl1680.fw` by default). Take a look at [silead_dmi.c](https://github.com/torvalds/linux/blob/cacd9759eea2f1c7e8792ecd91ed4602f963b1a5/drivers/platform/x86/silead_dmi.c) to
+see the DMI match expressions and the corresponding driver properties.
+
+### Adapting kernel driver
+It the driver doesn't work right, you can try tunning the driver parameters. This folder contains a copy
+of the [silead kernel driver](https://github.com/torvalds/linux/blob/master/drivers/input/touchscreen/silead.c)
+modified with some functions to tune the driver.
+
+You will need the kernel headers installed and the `silead` module not loaded.
+Then:
+ - Modify the `touchscreen_properties` struct in `silead-test.c` with better values.
+ - Execute `make test`.
+ - Test the device.
+ - Rinse and repeat.
+
+
 
 ### Calibration
 The calibration is done using the `libinput` driver. My device calibration matrix is stored in
@@ -47,5 +62,4 @@ where:
  - **`y-offset`** is the vertical offset from the bottom-left corner of the screen
  - **`x-scale`** is horizontal scaling factor
  - **`x-offset`** is the horizontal offset from the bottom-left corner of the screen
-
 
