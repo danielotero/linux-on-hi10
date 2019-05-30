@@ -23,7 +23,7 @@ Then:
 
 
 ### Calibration
-The calibration is done using the `libinput` driver. My device calibration matrix is stored in
+Another way of calibrating is using the `libinput` driver. My previous device calibration matrix is stored in
 [50-touchscreen.rules](https://raw.githubusercontent.com/danielotero/linux-on-hi10/master/touchscreen/50-touchscreen.rules),
 which is an [udev rules](https://wiki.archlinux.org/index.php/Udev) configuration file that must be copied to
 `/etc/udev/rules.d/`. Documentation of the specific libinput variable can be found
